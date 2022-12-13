@@ -8,6 +8,6 @@ namespace _10prac
 {
     internal static class y
     {
-
+        public static ConsoleKeyInfo key;    
     }
 }

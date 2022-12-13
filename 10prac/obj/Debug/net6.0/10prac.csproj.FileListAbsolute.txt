@@ -1,0 +1,15 @@
+C:\Users\я\Source\Repos\10prac\10prac\bin\Debug\net6.0\10prac.exe
+C:\Users\я\Source\Repos\10prac\10prac\bin\Debug\net6.0\10prac.deps.json
+C:\Users\я\Source\Repos\10prac\10prac\bin\Debug\net6.0\10prac.runtimeconfig.json
+C:\Users\я\Source\Repos\10prac\10prac\bin\Debug\net6.0\10prac.dll
+C:\Users\я\Source\Repos\10prac\10prac\bin\Debug\net6.0\10prac.pdb
+C:\Users\я\Source\Repos\10prac\10prac\obj\Debug\net6.0\10prac.csproj.AssemblyReference.cache
+C:\Users\я\Source\Repos\10prac\10prac\obj\Debug\net6.0\10prac.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\я\Source\Repos\10prac\10prac\obj\Debug\net6.0\10prac.AssemblyInfoInputs.cache
+C:\Users\я\Source\Repos\10prac\10prac\obj\Debug\net6.0\10prac.AssemblyInfo.cs
+C:\Users\я\Source\Repos\10prac\10prac\obj\Debug\net6.0\10prac.csproj.CoreCompileInputs.cache
+C:\Users\я\Source\Repos\10prac\10prac\obj\Debug\net6.0\10prac.dll
+C:\Users\я\Source\Repos\10prac\10prac\obj\Debug\net6.0\refint\10prac.dll
+C:\Users\я\Source\Repos\10prac\10prac\obj\Debug\net6.0\10prac.pdb
+C:\Users\я\Source\Repos\10prac\10prac\obj\Debug\net6.0\10prac.genruntimeconfig.cache
+C:\Users\я\Source\Repos\10prac\10prac\obj\Debug\net6.0\ref\10prac.dll

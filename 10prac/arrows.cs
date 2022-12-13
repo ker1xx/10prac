@@ -8,14 +8,13 @@ namespace _10prac
 {
     internal class arrows
     {
-        public static ConsoleKeyInfo key;
-        public static void godown()
+        public virtual void godown()
         {
-            Console.SetCursorPosition(0,/* taskamanager.pos*/0);
+            Console.SetCursorPosition(0,0);
             Console.Write("  ");
             /* taskamanager.pos++;*/
         }
-        public static void goup()
+        public virtual void goup()
         {
             Console.SetCursorPosition(0, /*taskamanager.pos*/0);
             Console.Write("  ");
