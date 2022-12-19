@@ -1,10 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\10prac",
-    "\\10prac\\obj\\Debug",
-    "\\10prac\\obj\\Release"
+    "\\10prac"
   ],
-  "SelectedNode": "\\10prac.sln",
+  "SelectedNode": "\\10prac\\admin.cs",
   "PreviewInSolutionExplorer": false
 }
