@@ -119,6 +119,7 @@ namespace _10prac
 
         public void Read()
         {
+            pos = 4;
             foreach (var a in y.workers)
             {
                 Console.SetCursorPosition((int)admin_enum.name, pos);
@@ -143,24 +144,32 @@ namespace _10prac
             if (stolbec == (int)admin_enum.name)
             {
                 change = y.workers[pos - 4].username;
+                change_pos = change.Length + 1;
+                Console.SetCursorPosition(change.Length + 1, pos);
                 change = changing_string(change, change_pos);
                 y.workers[pos - 4].username = change;
             }
             else if (stolbec == (int)admin_enum.password)
             {
                 change = Convert.ToString(y.workers[pos - 4].password);
+                Console.SetCursorPosition(change.Length + 2 + (int)admin_enum.password, pos); 
+                change_pos = change.Length + 1;
                 change = changing_string(change, change_pos);
                 y.workers[pos - 4].password = change;
             }
             else if (stolbec == (int)admin_enum.id)
             {
                 change = Convert.ToString(y.workers[pos - 4].id);
+                Console.SetCursorPosition(change.Length + 1 + (int)admin_enum.id, pos);
+                change_pos = change.Length + 1;
                 change = changing_string(change, change_pos);
                 y.workers[pos - 4].id = Convert.ToInt32(change);
             }
             else if (stolbec == (int)admin_enum.job_title)
             {
                 change = Convert.ToString(y.workers[pos - 4].enum_job_title);
+                Console.SetCursorPosition(change.Length + 1 + (int)admin_enum.job_title, pos);
+                change_pos = change.Length + 1;
                 change = changing_string(change, change_pos);
                 y.workers[pos - 4].enum_job_title = Convert.ToInt32(change);
             }
@@ -234,9 +243,9 @@ namespace _10prac
         }
         private static string changing_string(string change_string, int change_string_pos)
         {
-            y.key = new ConsoleKeyInfo((char)ConsoleKey.A, ConsoleKey.A, false, false, false);
             while (y.key.Key != ConsoleKey.Enter)
             {
+                y.key = Console.ReadKey();
                 if (y.key.Key == ConsoleKey.UpArrow || y.key.Key == ConsoleKey.DownArrow)
                 {
                     break;
@@ -252,7 +261,6 @@ namespace _10prac
                     change_string_pos++;
                     change_string += y.key.KeyChar;
                 }
-                y.key = Console.ReadKey();
             }
             return change_string;
         }

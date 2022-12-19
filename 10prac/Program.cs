@@ -6,7 +6,7 @@
         {
             login.enter();
             admin admin = new admin();
-            admin.admin_menu(y);
+            admin.Admin_menu();
         }
     }
 }
