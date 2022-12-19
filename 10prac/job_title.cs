@@ -6,15 +6,12 @@ using System.Threading.Tasks;
 
 namespace _10prac
 {
-    internal interface ICrud
+    internal enum job_title
     {
-        public void Create();
-
-        public void Read();
-
-        public void Update();
-
-        public void Delete();
-
+        admin = 0,
+        person_manager = 1,
+        storage_manager = 2,
+        cashier = 3,
+        accountant = 4
     }
 }

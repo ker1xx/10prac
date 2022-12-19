@@ -6,15 +6,11 @@ using System.Threading.Tasks;
 
 namespace _10prac
 {
-    internal interface ICrud
+    internal enum crud
     {
-        public void Create();
-
-        public void Read();
-
-        public void Update();
-
-        public void Delete();
-
+        create = 1,
+        read = 2,
+        update = 3,
+        delete = 4
     }
 }

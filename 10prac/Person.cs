@@ -9,14 +9,16 @@ namespace _10prac
 {
     internal class Person
     {
-        public Person(string a, int b, int c)
+        public Person(string a, string b, int c, int d)
         {
-            name = a;
+            username = a;
             password = b;
             enum_job_title = c;
+            id = d;
         }
-        public string name;
-        public int password;
+        public string username;
+        public string password;
         public int enum_job_title;
+        public int id;
     }
 }

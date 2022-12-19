@@ -4,7 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            login.enter();
+            admin admin = new admin();
+            admin.admin_menu(y);
         }
     }
 }

@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace _10prac
 {
-    internal interface ICrud
+    internal enum admin_enum
     {
-        public void Create();
-
-        public void Read();
-
-        public void Update();
-
-        public void Delete();
-
+        name = 0,
+        password = 20,
+        id = 40,
+        job_title = 45
     }
 }

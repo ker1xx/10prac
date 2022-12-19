@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\klink\\source\\repos\\10prac\\10prac\\10prac.csproj": {}
+    "C:\\Users\\я\\source\\repos\\prac10\\10prac\\10prac.csproj": {}
   },
   "projects": {
-    "C:\\Users\\klink\\source\\repos\\10prac\\10prac\\10prac.csproj": {
+    "C:\\Users\\я\\source\\repos\\prac10\\10prac\\10prac.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\klink\\source\\repos\\10prac\\10prac\\10prac.csproj",
+        "projectUniqueName": "C:\\Users\\я\\source\\repos\\prac10\\10prac\\10prac.csproj",
         "projectName": "10prac",
-        "projectPath": "C:\\Users\\klink\\source\\repos\\10prac\\10prac\\10prac.csproj",
-        "packagesPath": "C:\\Users\\klink\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\klink\\source\\repos\\10prac\\10prac\\obj\\",
+        "projectPath": "C:\\Users\\я\\source\\repos\\prac10\\10prac\\10prac.csproj",
+        "packagesPath": "C:\\Users\\я\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\я\\source\\repos\\prac10\\10prac\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\klink\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\я\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,6 +39,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -59,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
