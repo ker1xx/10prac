@@ -11,11 +11,11 @@ namespace _10prac
         private static int pos = 2;
         private static string password = "";
         public static string username = "";
-        private static int i = 0;
         private static int allright = 0;
 
         public static void enter()
         {
+            Console.SetCursorPosition(20, 0);
             Console.WriteLine("ДОБРО ПОЖАЛОВАТЬ В МАГАЗИН 'Я УБЬЮСЬ С ЭТИМИ ПРАКТИЧЕСКИМИ'");
             Console.WriteLine("_______________________________________________________________________________________________");
             Console.WriteLine("  Введите ваш логин: ");
@@ -118,7 +118,7 @@ namespace _10prac
         }
         private static void checker()
         {
-            foreach (var a in y.workers)
+            foreach (var a in y.admin_panel_workers)
             {
                 if (a.username == username && a.password == password)
                 {
@@ -131,6 +131,7 @@ namespace _10prac
                     username = "";
                     password = "";
                     Console.WriteLine("Вы ввели неверный логин или пароль, попробуйте заново");
+                    Thread.Sleep(1000);
                     Console.Clear();
                     Console.WriteLine("ДОБРО ПОЖАЛОВАТЬ В МАГАЗИН 'Я УБЬЮСЬ С ЭТИМИ ПРАКТИЧЕСКИМИ'");
                     Console.WriteLine("_______________________________________________________________________________________________");

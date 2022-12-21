@@ -7,18 +7,19 @@ using System.Threading.Tasks;
 
 namespace _10prac
 {
-    internal class Person
+    internal class admin_Person : ID
     {
-        public Person(string a, string b, int c, int d)
+        public admin_Person(string a, string b, int c, int d) : base(d)
         {
             username = a;
             password = b;
             enum_job_title = c;
-            id = d;
+            idi = d;
+            ID id = new ID(idi);
         }
         public string username;
         public string password;
         public int enum_job_title;
-        public int id;
+        public int idi;
     }
 }

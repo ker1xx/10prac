@@ -20,9 +20,10 @@ namespace _10prac
             Console.SetCursorPosition((int)admin_enum.name, 4);
             while (y.key.Key != ConsoleKey.F10)
             {
-                y.workers = y.deserialize<List<Person>>("Person.json");
+                y.admin_panel_workers = y.admin_deserialize<List<admin_Person>>("admin_Person.json");
                 Console.Clear();
                 head();
+                subhead();
                 Read();
                 arrows();
                 Console.SetCursorPosition(stolbec, pos);
@@ -32,8 +33,10 @@ namespace _10prac
                     Update();
                 else if (y.key.Key == ConsoleKey.Delete)
                     Delete();
-                else if (y.key.Key == ConsoleKey.S)
+                else if (y.key.Key == ConsoleKey.F2)
                     search();
+                else if (y.key.Key == ConsoleKey.Escape)
+                    return;
                 Console.WriteLine("->");
                 y.key = Console.ReadKey();
 
@@ -41,22 +44,34 @@ namespace _10prac
         }
         private static void search()
         {
+            Console.SetCursorPosition(70, 10);
+            Console.Clear();
+            head();
+            Console.SetCursorPosition(70, 8);
+            Console.WriteLine("Для выхода нажмите Escape");
+            Console.SetCursorPosition(70, 10);
             search_string = changing_string(search_string, search_pos);
-            show_search();
+
+            while (y.key.Key != ConsoleKey.Escape)
+            {
+                show_search();
+                y.key = Console.ReadKey();
+            }
         }
         private static void show_search()
         {
-            pos = 0;
-            foreach (var a in y.workers)
+            Console.Clear();
+            head();
+            foreach (var a in y.admin_panel_workers)
             {
-                if (search_string == a.id.ToString() || search_string == a.username || search_string == a.enum_job_title.ToString())
+                if (search_string == a.idi.ToString() || search_string == a.username || search_string == a.enum_job_title.ToString() || search_string == a.password)
                 {
                     Console.SetCursorPosition((int)admin_enum.name, pos);
                     Console.Write("  " + a.username);
                     Console.SetCursorPosition((int)admin_enum.password, pos);
                     Console.Write("  " + a.password);
                     Console.SetCursorPosition((int)admin_enum.id, pos);
-                    Console.Write("  " + a.id);
+                    Console.Write("  " + a.idi);
                     Console.SetCursorPosition((int)admin_enum.job_title, pos);
                     Console.Write("  " + a.enum_job_title);
                     pos++;
@@ -64,27 +79,40 @@ namespace _10prac
             }
         }
 
-        public void Create()
+        public virtual void Create()
         {
             try
             {
+                pos = 4;
+                stolbec = (int)admin_enum.name;
                 y.key = new ConsoleKeyInfo((char)ConsoleKey.A, ConsoleKey.A, false, false, false);
                 string newname = "";
                 string newpassword = "";
                 int newid = 0;
                 int newjobtitle = 0;
+                int newname_length = 0;
+                int newpassword_length = 0;
+                int newid_length = 0;
+                int newjobtitle_length = 0;
                 Console.Clear();
+                admin_Person newperson = new admin_Person(newname, newpassword, newid, newjobtitle);
                 head();
-                while (y.key.Key != ConsoleKey.F1)
+                Console.SetCursorPosition(stolbec, pos);
+                Console.Write("->");
+                while (y.key.Key != ConsoleKey.S)
                 {
+                    Console.SetCursorPosition(70, 10);
+                    Console.WriteLine("Для сохранения нажмите S");
+                    Console.SetCursorPosition(stolbec, pos);
+                    Console.Write("  ");
                     if (y.key.Key == ConsoleKey.RightArrow)
                     {
-                        if (stolbec == (int)admin_enum.name)
-                            stolbec = (int)admin_enum.password;
-                        if (stolbec == (int)admin_enum.password)
-                            stolbec = (int)admin_enum.id;
                         if (stolbec == (int)admin_enum.id)
                             stolbec = (int)admin_enum.job_title;
+                        if (stolbec == (int)admin_enum.password)
+                            stolbec = (int)admin_enum.id;
+                        if (stolbec == (int)admin_enum.name)
+                            stolbec = (int)admin_enum.password;
                     }
                     if (y.key.Key == ConsoleKey.LeftArrow)
                     {
@@ -97,37 +125,39 @@ namespace _10prac
                         if (stolbec == (int)admin_enum.job_title)
                             stolbec = (int)admin_enum.id;
                     }
+                    Console.SetCursorPosition(stolbec, pos);
+                    Console.Write("->");
+                    Console.SetCursorPosition(stolbec + 2, pos);
                     if (stolbec == (int)admin_enum.name)
-                        newname = changing_string(newname, 0);
+                        newname = changing_string(newname, newname_length);
                     else if (stolbec == (int)admin_enum.password)
-                        newpassword = changing_string(newpassword, 0);
+                        newpassword = changing_string(newpassword, newpassword_length);
                     else if (stolbec == (int)admin_enum.id)
-                        newid = Convert.ToInt32(changing_string(newid.ToString(), 0));
+                        newid = Convert.ToInt32(changing_string(newid.ToString(), newid_length));
                     else if (stolbec == (int)admin_enum.job_title)
-                        newjobtitle = Convert.ToInt32(changing_string(newjobtitle.ToString(), 0));
-                    Person newperson = new Person(newname, newpassword, newid, newjobtitle);
-                    y.workers.Add(newperson);
+                        newjobtitle = Convert.ToInt32(changing_string(newjobtitle.ToString(), newjobtitle_length));
+                    y.key = Console.ReadKey();
                 }
-                y.serialize(y.workers, "Person.json");
+                y.admin_panel_workers.Add(newperson);
+                y.admin_serialize(y.admin_panel_workers, "admin_Person.json");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                Console.WriteLine("Видимо, вы допустили ошибку: " + ex + " Попробуйте заново");
-                return;
+                Console.WriteLine("Видимо, вы допустили ошибку. Попробуйте заново");
             }
         }
 
-        public void Read()
+        public virtual void Read()
         {
             pos = 4;
-            foreach (var a in y.workers)
+            foreach (var a in y.admin_panel_workers)
             {
                 Console.SetCursorPosition((int)admin_enum.name, pos);
                 Console.Write("  " + a.username);
                 Console.SetCursorPosition((int)admin_enum.password, pos);
                 Console.Write("  " + a.password);
                 Console.SetCursorPosition((int)admin_enum.id, pos);
-                Console.Write("  " + a.id);
+                Console.Write("  " + a.idi);
                 Console.SetCursorPosition((int)admin_enum.job_title, pos);
                 Console.Write("  " + a.enum_job_title);
                 pos++;
@@ -136,57 +166,85 @@ namespace _10prac
             Console.SetCursorPosition((int)admin_enum.name, 4);
         }
 
-        public void Update() /* F3*/
+        public virtual void Update() /* F3*/
         {
             y.key = new ConsoleKeyInfo((char)ConsoleKey.A, ConsoleKey.A, false, false, false);
             string change = "";
             int change_pos = 0;
             if (stolbec == (int)admin_enum.name)
             {
-                change = y.workers[pos - 4].username;
-                change_pos = change.Length + 1;
-                Console.SetCursorPosition(change.Length + 1, pos);
-                change = changing_string(change, change_pos);
-                y.workers[pos - 4].username = change;
+                try
+                {
+                    change = y.admin_panel_workers[pos - 4].username;
+                    change_pos = change.Length + 1;
+                    Console.SetCursorPosition(change.Length + 1, pos);
+                    change = changing_string(change, change_pos);
+                    y.admin_panel_workers[pos - 4].username = change;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
             else if (stolbec == (int)admin_enum.password)
             {
-                change = Convert.ToString(y.workers[pos - 4].password);
-                Console.SetCursorPosition(change.Length + 2 + (int)admin_enum.password, pos); 
-                change_pos = change.Length + 1;
-                change = changing_string(change, change_pos);
-                y.workers[pos - 4].password = change;
+                try
+                {
+                    change = Convert.ToString(y.admin_panel_workers[pos - 4].password);
+                    Console.SetCursorPosition(change.Length + 2 + (int)admin_enum.password, pos);
+                    change_pos = change.Length + 1;
+                    change = changing_string(change, change_pos);
+                    y.admin_panel_workers[pos - 4].password = change;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
             else if (stolbec == (int)admin_enum.id)
             {
-                change = Convert.ToString(y.workers[pos - 4].id);
-                Console.SetCursorPosition(change.Length + 1 + (int)admin_enum.id, pos);
-                change_pos = change.Length + 1;
-                change = changing_string(change, change_pos);
-                y.workers[pos - 4].id = Convert.ToInt32(change);
+                try
+                {
+                    change = Convert.ToString(y.admin_panel_workers[pos - 4].idi);
+                    Console.SetCursorPosition(change.Length + 1 + (int)admin_enum.id, pos);
+                    change_pos = change.Length + 1;
+                    change = changing_string(change, change_pos);
+                    y.admin_panel_workers[pos - 4].idi = Convert.ToInt32(change);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
             else if (stolbec == (int)admin_enum.job_title)
             {
-                change = Convert.ToString(y.workers[pos - 4].enum_job_title);
-                Console.SetCursorPosition(change.Length + 1 + (int)admin_enum.job_title, pos);
-                change_pos = change.Length + 1;
-                change = changing_string(change, change_pos);
-                y.workers[pos - 4].enum_job_title = Convert.ToInt32(change);
+                try
+                {
+                    change = Convert.ToString(y.admin_panel_workers[pos - 4].enum_job_title);
+                    Console.SetCursorPosition(change.Length + 1 + (int)admin_enum.job_title, pos);
+                    change_pos = change.Length + 1;
+                    change = changing_string(change, change_pos);
+                    y.admin_panel_workers[pos - 4].enum_job_title = Convert.ToInt32(change);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
             }
-            y.serialize(y.workers, "Person.json");
+            y.admin_serialize(y.admin_panel_workers, "admin_Person.json");
         }
 
-        public void Delete() /* delete */
+        public virtual void Delete() /* delete */
         {
-            y.workers.Remove(y.workers[pos - 4]);
+            y.admin_panel_workers.Remove(y.admin_panel_workers[pos - 4]);
             Console.Clear();
-            y.serialize(y.workers, "Person.json");
+            y.admin_serialize(y.admin_panel_workers, "admin_Person.json");
         }
         private static void head()
         {
             Console.SetCursorPosition(20, 0);
             Console.WriteLine("МЕНЮ АДМИНИСТРАТОРА " + login.username);
-            Console.WriteLine("________________________________________________________");
+            Console.WriteLine("______________________________________________________________________________________________________________________");
             Console.SetCursorPosition((int)admin_enum.name, 2);
             Console.Write("Имя пользователя");
             Console.SetCursorPosition((int)admin_enum.password, 2);
@@ -195,6 +253,14 @@ namespace _10prac
             Console.Write("ID");
             Console.SetCursorPosition((int)admin_enum.job_title, 2);
             Console.Write("Должность");
+            int i = 0;
+            while (i != y.admin_panel_workers.Count() + 10)
+            {
+                Console.SetCursorPosition(69, i);
+                Console.WriteLine("|");
+                i++;
+            };
+
         }
         private static void arrows()
         {
@@ -204,8 +270,8 @@ namespace _10prac
                     {
                         Console.Write("  ");
                         pos++;
-                        if (pos >= (y.workers.Count() + 3))
-                            pos = (y.workers.Count() + 3);
+                        if (pos >= (y.admin_panel_workers.Count() + 3))
+                            pos = (y.admin_panel_workers.Count() + 3);
                         break;
                     }
                 case ConsoleKey.UpArrow:
@@ -219,12 +285,12 @@ namespace _10prac
                 case ConsoleKey.RightArrow:
                     {
                         Console.Write("  ");
-                        if (stolbec == (int)admin_enum.name)
-                            stolbec = (int)admin_enum.password;
+                        if (stolbec == (int)admin_enum.id)
+                            stolbec = (int)admin_enum.job_title;
                         else if (stolbec == (int)admin_enum.password)
                             stolbec = (int)admin_enum.id;
-                        else if (stolbec == (int)admin_enum.id)
-                            stolbec = (int)admin_enum.job_title;
+                        else if (stolbec == (int)admin_enum.name)
+                            stolbec = (int)admin_enum.password;
                         break;
                     }
                 case ConsoleKey.LeftArrow:
@@ -241,7 +307,7 @@ namespace _10prac
             }
 
         }
-        private static string changing_string(string change_string, int change_string_pos)
+        public static string changing_string(string change_string, int change_string_pos)
         {
             while (y.key.Key != ConsoleKey.Enter)
             {
@@ -263,6 +329,23 @@ namespace _10prac
                 }
             }
             return change_string;
+        }
+        private static void subhead()
+        {
+            Console.SetCursorPosition(70, 2);
+            Console.WriteLine("Для создания нажмите F1");
+            Console.SetCursorPosition(70, 3);
+            Console.WriteLine("Для изменения нажмите F3");
+            Console.SetCursorPosition(70, 4);
+            Console.WriteLine("Для удаления нажмите Delete");
+            Console.SetCursorPosition(70, 5);
+            Console.WriteLine("Для поиска нажмите F2");
+            Console.SetCursorPosition(70, 6);
+            Console.WriteLine("При изменении, вводе или добавлении вам потребуется нажать Enter,");
+            Console.SetCursorPosition(70, 7);
+            Console.WriteLine("чтобы подтвердить ввод");
+            Console.SetCursorPosition(70, 9);
+            Console.WriteLine("Поиск: ");
         }
     }
 }
