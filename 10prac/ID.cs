@@ -8,10 +8,6 @@ namespace _10prac
 {
     internal class ID
     {
-        public ID(int a)
-        {
-            id = a;
-        }
         public int id;
     }
 }

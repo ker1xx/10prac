@@ -21,7 +21,6 @@ namespace _10prac
             Console.WriteLine("  Введите ваш логин: ");
             Console.WriteLine("  Введите ваш пароль: ");
             Console.WriteLine("  Войти");
-            Console.SetCursorPosition(0, 0);
             while (allright != 1)
             {
                 if (y.key.Key == ConsoleKey.Enter & pos == 2)

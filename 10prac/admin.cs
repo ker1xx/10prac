@@ -341,8 +341,10 @@ namespace _10prac
             Console.SetCursorPosition(70, 5);
             Console.WriteLine("Для поиска нажмите F2");
             Console.SetCursorPosition(70, 6);
-            Console.WriteLine("При изменении, вводе или добавлении вам потребуется нажать Enter,");
+            Console.WriteLine("При изменении, вводе или добавлении");
             Console.SetCursorPosition(70, 7);
+            Console.WriteLine("вам потребуется нажать Enter,");
+            Console.SetCursorPosition(70, 8);
             Console.WriteLine("чтобы подтвердить ввод");
             Console.SetCursorPosition(70, 9);
             Console.WriteLine("Поиск: ");
